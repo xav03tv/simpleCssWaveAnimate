@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CSS Waves (mobile & full width)</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header>
+        <h1>Simple Css Waves</h1>
+        <p>Animation en css d'une wave réalisé avec un SVG. Inspiré par <a href="https://codepen.io/goodkatz">codepen.io/goodkatz</a></p>
+    </header>
+    <div>
+        <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewbox="0 24 150 28"
+            preserveAspectRatio="none"
+            rendering="auto"    
+        > <!-- 300 100 -->
+        <defs>
+        <path id="wave"  
+        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+        ></path>
+        </defs>
+        <g class="parallax">
+        <use class="wave" xlink:href="#wave" fill="rgba(50,50,200,0.8)" x="48" y="0"></use>
+        <use class="wave" xlink:href="#wave" fill="rgba(50,50,200,0.6)" x="48" y="0"></use>
+        <use class="wave" xlink:href="#wave" fill="rgba(50,50,200,0.4)" x="48" y="0"></use>
+        <use class="wave" xlink:href="#wave" fill="rgba(50,50,200,0.2)" x="48" y="0"></use>
+        <use class="wave" xlink:href="#wave" fill="rgba(50,50,200,1)" x="48" y="0"></use>
+
+        </g>
+
+        </svg>
+    </div>
+</body>
+</html>
