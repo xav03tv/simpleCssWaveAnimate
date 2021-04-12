@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn SVG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg  xmlns="http://www.w3.org/2000/svg" version="1.1"
+    width="800"
+    height="500"
+    viewbox="0 0 800 500"
+    preserveAspectRatio=""
+    
+>
+    <rect class="rectangle" x="0" y="100" width="20" height="20" fill="#f7b2c1"/>
+    <circle class="rectangle" cx="10" cy="80" r=10 fill="black" />
+    <text class="rectangle" x="0" y="50" text-anchor="50">coucou</text>
+    <g stroke="black" fill="transparent">
+        <!-- 
+           minuscule = relative 
+           majuscule = absolute
+           m,M : moveTo, déplace le curseur aux coordonée ex : 
+           h, H : se déplacer Horizontalement
+           v, V : se déplacer verticalement
+           l, L: trace en ligne droite vers les coordonées
+           z||Z termine la forme en reliant le dernier point au premier
+           c, CcurveTo
+         -->
+        <path   stroke-width="2" d="M200 10 h500 v30 h20 v30 z"/>
+        <path   stroke-width="2" d="M10 170 l590 -10"/>
+        <path   stroke-width="2" d="M10 175 l590 0"/>
+        <path   stroke-width="2" d="M10 180 l590 10"/>
+        <path   stroke-width="2" d="M10 180 l590 10"/>
+        <!-- Creer une courbe
+            Mx-y C|c xy(premier pt de courbe) xy(2eme point de courbe) xy(point d'arrivée)
+        -->
+        <path stroke-width="1" d="M50 300 l100 0 c0 100, 100 100, 100 0 l100 0 l0 100 L50 400 z" />
+        <path class="arrondi"   stroke-width="2" d="M10 250 C 100 100, 400 100, 500 250"/>
+        <!-- creer une ligne horizontale de 100Px une courbe vers le bas symetrique creer une ligne horizonatle de 100px -->
+        <path id="gentle-wave" d="M0 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+
+        <!-- Shorland CurbeTo -->
+        <!-- On lie ensemble plusieur courbes bezier. SOuvent, le point de controle d'un coté sera Zune réflexion du point de l'autre coté,
+             afin de garder une pente constante. Dans ce cas, on peut utiliser le raccourci de la courbe cubique avec S ou s-->
+                <defs>
+                    <path id="scurve" stroke="blue" fill="invisible"  stroke-width="2" d="M0 300 c 33 -50, 66 -50, 100 0 s 66 50 100 0"/>
+                </defs>
+
+                <use xlink:href="#scurve" />
+                <use xlink:href="#scurve" x="0" y="15" />
+                <use xlink:href="#scurve" x="0" y="30" />
+
+
+
+
+
+
+
+
+    </g>
+    <path class="arrondi" fill="transparent" stoke="red"   stroke-width="2" d="m0 300 C 100 100, 400 100, 250 300"/>
+</svg>
+<svg  xmlns="http://www.w3.org/2000/svg" version="1.1"
+    width="500"
+    height="200"
+    viewbox="0 0 500 200"
+    preserveAspectRatio="none"
+
+>
+<path stroke="black" stroke-width="1" d="M10 100 L490 100"></path>
+</svg>
+<input id="range" onchange="modifRange(this.value)" min="0" max="100" value="50" type="range">
+</body>
+</html>
+<script>
+    let forme = document.getElementById("scurve");
+    modifCurve(forme, 50)
+
+    range = document.getElementById("range");
+    function modifRange(e){
+        modifCurve(forme, e)
+    }
+
+    function modifCurve(forme, size){
+        let formCoord = forme.attributes.d.textContent;
+        let coordArr = formCoord.split(" ");
+
+        //je change la hauteur des courbes
+        let curveHeight = size*-1;
+        coordArr[4] = curveHeight;
+        coordArr[6] = curveHeight;
+        coordArr[11] = -curveHeight;
+
+        formCoord = coordArr.join(" ")
+
+        console.log(formCoord)
+        forme.attributes.d.textContent = formCoord;
+    }
+    
+</script>

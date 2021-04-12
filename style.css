@@ -1,0 +1,40 @@
+body{
+    margin:0;
+    padding: 0;
+}
+svg{
+    border:1px solid black;
+}
+
+.rectangle{
+    animation: animate1 5s ease-in-out infinite alternate;
+    stroke:black;
+    stroke-width: 1px;
+    transform-origin: center;
+}
+
+.testi{
+    transform: skew(20deg 10deg);
+}
+
+
+
+
+
+@keyframes animate1 {
+    0%{
+        transform: translatex(0%);
+        fill:aqua;
+
+
+
+        
+    }
+    100%{
+        transform: translatex(100%) translatex(-20px);
+        fill:blue;
+
+
+
+    }
+}
